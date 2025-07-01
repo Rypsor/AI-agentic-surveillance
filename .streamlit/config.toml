@@ -1,0 +1,2 @@
+[server]
+folderWatchBlacklist = ["./.venv/Lib/site-packages/torch"]

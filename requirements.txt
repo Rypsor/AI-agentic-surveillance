@@ -1,5 +1,6 @@
-
 ultralytics
-torchvision
+google-generativeai
 opencv-python
-matplotlib
+pillow
+python-dotenv
+streamlit
