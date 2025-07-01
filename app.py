@@ -145,7 +145,7 @@ def run_monitor_pipeline(video_path: str, user_intention: str, surveillance_conf
             for box in results[0].boxes:
                 class_id = int(box.cls[0])
                 detected_class_name = model.names[class_id]
-                if detected_class_name in target_classes:
+                if detected_class_name.lower() in target_classes:
                     event_triggered = True
                     st.warning(f"🚨 ¡DETECCIÓN! '{detected_class_name}' en frame {frame_count}.")
                     annotated_frame = results[0].plot()
