@@ -1,6 +1,6 @@
-ultralytics
-google-generativeai
-opencv-python
-pillow
-python-dotenv
 streamlit
+python-dotenv
+google-generativeai
+Pillow
+opencv-python-headless
+ultralytics

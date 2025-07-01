@@ -4,12 +4,19 @@ from dotenv import load_dotenv
 
 # Carga las variables de entorno desde un archivo .env
 # Esto es más seguro que poner la clave directamente en el código
-load_dotenv()
+# Especifica el path explícito del archivo .env
+env_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(env_path)
 
 # Tu clave de API de Google Gemini
 # Crea un archivo llamado .env en la misma carpeta y añade:
 # GEMINI_API_KEY="TU_CLAVE_AQUI"
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or "AIzaSyBSFPlb-oKIz9_ohauZ5gy5iM2QRpXQto0"
+
+# Configuración de debug
+DEBUG_MODE = os.getenv("DEBUG_MODE", "false").lower() == "true"
+
+TEST_IMAGES_DIR = "data/images"
 
 # Mapeo de los modelos de detección a sus pesos y clases de interés
 MODEL_CONFIG = {
