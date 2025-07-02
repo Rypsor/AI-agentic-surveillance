@@ -1,4 +1,4 @@
-# app.py (Versión 5.0 - Doble Pipeline: Monitoreo y Búsqueda)
+
 
 import streamlit as st
 import os
@@ -14,6 +14,8 @@ from collections import deque
 
 from dotenv import load_dotenv
 import google.generativeai as genai
+
+
 
 # --- CONFIGURACIÓN DE LA PÁGINA ---
 st.set_page_config(page_title="Sistema de Vigilancia IA", layout="wide")
@@ -67,19 +69,40 @@ def extract_video_segment(input_path: str, output_path: str, start_frame: int, e
 
 
 
+# ==============================================================================
+# ====== REEMPLAZA TU FUNCIÓN load_models EXISTENTE CON ESTA ===================
+# ==============================================================================
+
 @st.cache_resource
 def load_models():
-    """Carga los modelos de IA una sola vez."""
+    """
+    Carga los modelos de IA una sola vez, leyendo los nombres de los modelos 
+    de Gemini desde el archivo .env.
+    """
     with st.spinner("Cargando modelos de IA (esto solo sucede la primera vez)..."):
+        # Carga de modelos YOLO (sin cambios)
         intention_to_model_path = {
             "accidente": os.path.join(BASE_DIR, "weights", "best_accident.pt"),
             "fuego": os.path.join(BASE_DIR, "weights", "best_fire.pt"),
             "general": os.path.join(BASE_DIR, "weights", "best_general.pt")
         }
         models = {name: YOLO(path) for name, path in intention_to_model_path.items()}
-        vision_model = genai.GenerativeModel('gemini-2.0-flash')
-        text_model = genai.GenerativeModel('gemini-2.0-flash')
+        
+        # --- CAMBIOS AQUÍ ---
+        # 1. Leer los nombres de los modelos desde el archivo .env
+        #    Se proporciona un valor por defecto ("gemini-1.5-flash") por si las variables no existen en .env
+        vision_model_name = os.getenv("VISION_MODEL", "gemini-1.5-flash") # <<< NUEVO
+        text_model_name = os.getenv("TEXT_MODEL", "gemini-1.5-flash")   # <<< NUEVO
+
+        st.info(f"Cargando modelo de visión: `{vision_model_name}`") # Opcional: para depuración
+        st.info(f"Cargando modelo de texto: `{text_model_name}`")   # Opcional: para depuración
+
+        # 2. Inicializar los modelos de Gemini usando los nombres leídos
+        vision_model = genai.GenerativeModel(vision_model_name) # <<< MODIFICADO
+        text_model = genai.GenerativeModel(text_model_name)     # <<< MODIFICADO
+        
         return models, vision_model, text_model
+
 
 detection_models, vision_model, text_model = load_models()
 

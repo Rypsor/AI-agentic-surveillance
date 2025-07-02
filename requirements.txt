@@ -1,6 +1,10 @@
+streamlit
 ultralytics
 google-generativeai
 opencv-python
-pillow
+Pillow
 python-dotenv
-streamlit
+numpy
+torch
+torchvision
+
