@@ -334,7 +334,7 @@ def run_monitor_pipeline(video_path: str, user_intention: str, surveillance_conf
     Pipeline de monitoreo que continúa el análisis tras un incidente menor o falsa alarma,
     y se detiene solo ante una alarma confirmada o un error.
     """
-    st.info(f"🧠 **Pipeline de Monitoreo Activado:** Configuración: `{json.dumps(surveillance_config)}`")
+    st.info(f" **Pipeline de Monitoreo Activado:** Configuración: `{json.dumps(surveillance_config)}`")
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
         st.error(f"Error al abrir el archivo de video en la ruta: {video_path}")
@@ -383,7 +383,7 @@ def run_monitor_pipeline(video_path: str, user_intention: str, surveillance_conf
                 if detected_class_name.lower() in [cls.lower() for cls in target_classes]:
                     events_found_count += 1
                     
-                    with st.spinner(f"🚨 ¡Posible evento '{detected_class_name}'! Analizando con IA (Evento #{events_found_count})..."):
+                    with st.spinner(f" ¡Posible evento '{detected_class_name}'! Analizando con IA (Evento #{events_found_count})..."):
                         
                         # Recopilar fotogramas para el análisis de IA (contexto antes y después)
                         collected_analysis_frames = list(analysis_frame_buffer)
@@ -416,7 +416,7 @@ def run_monitor_pipeline(video_path: str, user_intention: str, surveillance_conf
 
                     elif veredicto == "INCIDENTE_MENOR":
                         with st.container():
-                            st.warning(f"⚠️ **Incidente Menor Registrado** (en frame {frame_count}). El monitoreo continúa.")
+                            st.warning(f" **Incidente Menor Registrado** (en frame {frame_count}). El monitoreo continúa.")
                             st.info(f"**Justificación:** {justificacion}")
                             annotated_frame = results[0].plot()
                             st.image(annotated_frame, caption=f"Frame del incidente menor: '{detected_class_name}'", channels="BGR")
@@ -432,7 +432,7 @@ def run_monitor_pipeline(video_path: str, user_intention: str, surveillance_conf
 
                         # Extraer el videoclip del evento real
                         clip_path = None
-                        with st.spinner("💾 Extrayendo videoclip del evento..."):
+                        with st.spinner(" Extrayendo videoclip del evento..."):
                             clip_total_frames = int(capture_duration * fps)
                             start_clip_frame = max(0, frame_count - (clip_total_frames // 2))
                             end_clip_frame = min(total_frames, frame_count + (clip_total_frames // 2))
@@ -442,11 +442,11 @@ def run_monitor_pipeline(video_path: str, user_intention: str, surveillance_conf
                             extract_video_segment(video_path, clip_path, start_clip_frame, end_clip_frame, fps)
 
                         # Mostrar resultados finales
-                        st.subheader("📝 Reporte del Agente 2 (Guardia)")
+                        st.subheader(" Reporte del Agente 2 (Guardia)")
                         if "error" not in scene_report: st.json(scene_report)
                         else: st.error(f"Fallo en el reporte del Agente 2: {scene_report['error']}")
 
-                        st.subheader("⚖️ Decisión Final del Jefe de Seguridad (Agente 3)")
+                        st.subheader(" Decisión Final del Jefe de Seguridad (Agente 3)")
                         autoridad = decision_result.get("autoridad_a_notificar", "Ninguna")
                         mensaje = decision_result.get("mensaje_de_alerta", "No hay mensaje.")
 
@@ -462,7 +462,7 @@ def run_monitor_pipeline(video_path: str, user_intention: str, surveillance_conf
                             st.divider()
                             with open(clip_path, "rb") as file:
                                 st.download_button(
-                                    label="📥 Descargar Videoclip de la Alarma (.mp4)",
+                                    label=" Descargar Videoclip de la Alarma (.mp4)",
                                     data=file,
                                     file_name=clip_filename,
                                     mime="video/mp4",
@@ -476,7 +476,7 @@ def run_monitor_pipeline(video_path: str, user_intention: str, surveillance_conf
     
     cap.release()
     if not stop_processing:
-        st.success(f"✅ Monitoreo completo del video. Se analizaron {events_found_count} eventos potenciales.")
+        st.success(f" Monitoreo completo del video. Se analizaron {events_found_count} eventos potenciales.")
     
     progress_bar.empty()
     status_text.text("Análisis finalizado.")
@@ -561,7 +561,7 @@ def run_search_pipeline(video_path: str, base_class: str, specific_property: str
 
 
 # --- 4. LÓGICA PRINCIPAL DE LA APP ---
-st.title("👁️ Sistema de Vigilancia con Agentes de IA")
+st.title(" Sistema de Vigilancia con Agentes de IA")
 
 # --- GENERACIÓN DE LA DESCRIPCIÓN ESTÁTICA ---
 
