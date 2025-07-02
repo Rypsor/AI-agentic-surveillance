@@ -116,7 +116,7 @@ def interpret_and_dispatch(user_intention: str) -> dict:
     # Ahora incluye TODAS las clases de tus modelos y más sinónimos.
     knowledge_base = """
     ### Modelos y Clases (MAPA FUNDAMENTAL) ###
-    - Modelo "accidente": Contiene las clases ['accident', 'moderate', 'severe']. Se especializa en detectar choques y su gravedad.
+    - Modelo "accidente": Contiene las clases ['accident', 'severe']. Se especializa en detectar choques y su gravedad.
     - Modelo "fuego": Contiene las clases ['fire', 'smoke']. Se especializa en detectar incendios.
     - Modelo "general": Contiene todas las demás clases: ['person', 'bicycle', 'car', 'motorcycle', 'bus', 'train', 'truck', 'cat', 'dog'].
 
@@ -137,7 +137,7 @@ def interpret_and_dispatch(user_intention: str) -> dict:
     1.  **Prioridad de Modelos:** Si la solicitud menciona "fuego", "humo", "incendio" o "accidente", SIEMPRE debes usar los modelos especializados ("fuego" o "accidente") para esas clases.
     2.  **Default a 'search':** Si el usuario pide buscar algo con una propiedad visual (color, tamaño, acción, estado como "estacionado", "roto"), el workflow es "search".
     3.  **Default a 'monitor':** Si el usuario usa palabras como "vigila", "alerta si", "avísame cuando", "monitorea", el workflow es "monitor".
-    4. **Generalización:** nunca uses "general" para buscar "car" cuando de accidentes se trata, usa "accidente" directamente.
+    4. **Generalización:** nunca uses "general" para buscar "car" cuando de accidentes se trata, usa "accidente", incluyendo ["accident","severe"]. En caso de monitoreo de asaltos o robos, la presencia de tapabocas no es relevante.
     """
     
     prompt = f"""
@@ -259,7 +259,7 @@ def verify_alarm_with_gemini(scene_report: dict, user_intention: str) -> dict:
     **Tus Responsabilidades:**
     1.  **Analiza el Veredicto Inicial:** Evalúa la conclusión de tu guardia a la luz de la intención original.
     2.  **Toma la Decisión Final:** Emite un veredicto. Los veredictos posibles son: 'ALARMA_CONFIRMADA', 'INCIDENTE_MENOR' o 'FALSA_ALARMA'.
-    3.  **Determina la Autoridad Competente:** Si es 'ALARMA_CONFIRMADA', decide a quién notificar. Las opciones son: 'Policía', 'Bomberos', 'Servicios Médicos', 'Control de Animales' o 'Ninguna'.
+    3.  **Determina la Autoridad Competente:** Si es 'ALARMA_CONFIRMADA', decide a quién notificar, piensa en cual autoridad es más adecuada segun el caso. Las opciones son: 'Policía', 'Bomberos', 'Servicios Médicos', 'Control de Animales' o 'Ninguna'.
     4.  **Redacta el Mensaje de Alerta:** Si se notifica a una autoridad, escribe un mensaje breve y directo para ellos.
 
     **Formato de Salida Obligatorio:**
