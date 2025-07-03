@@ -1,24 +1,28 @@
-# 🚨 Sistema de Vigilancia con Agentes de IA
-
+#  Sistema de Vigilancia con Agentes de IA
 Un sistema avanzado de vigilancia inteligente que utiliza múltiples modelos de IA (YOLOv5 + Google Gemini) para el análisis automático de videos de seguridad.
 
-## 🎯 Características Principales
+## Link de YouTube:
+https://youtu.be/KTCd0Cu397o
+
+
+
+##  Características Principales
 
 - **🔍 Doble Modo de Operación:**
   - **Monitoreo en Tiempo Real:** Vigilancia continua con alertas automáticas
   - **Búsqueda Específica:** Localización de objetos con características particulares
 
-- **🤖 Arquitectura Multi-Agente:**
+- ** Arquitectura Multi-Agente:**
   - **Agente Despachador:** Analiza la intención del usuario y selecciona el pipeline apropiado
   - **Agente Guardia:** Describe escenas y evalúa situaciones detectadas
   - **Agente Jefe de Seguridad:** Toma decisiones finales y determina acciones a seguir
 
-- **🎯 Detección Especializada:**
+- ** Detección Especializada:**
   - **Accidentes:** Choques vehiculares y evaluación de gravedad
   - **Incendios:** Detección de fuego y humo
   - **Objetos Generales:** Personas, vehículos, animales domésticos
 
-## 🛠️ Tecnologías Utilizadas
+##  Tecnologías Utilizadas
 
 - **Frontend:** Streamlit
 - **Detección de Objetos:** YOLOv5 (Ultralytics)
@@ -27,7 +31,7 @@ Un sistema avanzado de vigilancia inteligente que utiliza múltiples modelos de 
 - **Procesamiento de Imágenes:** PIL/Pillow
 - **Framework ML:** PyTorch
 
-## 📋 Requisitos del Sistema
+##  Requisitos del Sistema
 
 - Python 3.8+
 - GPU recomendada para mejor rendimiento
@@ -35,7 +39,7 @@ Un sistema avanzado de vigilancia inteligente que utiliza múltiples modelos de 
 - Al menos 4GB de RAM
 - Espacio en disco suficiente para videos y clips generados
 
-## 🚀 Instalación
+##  Instalación
 
 1. **Clonar el repositorio:**
 ```bash
@@ -71,7 +75,7 @@ hackaton-equipo-4/
 └── output_captures/
 ```
 
-## 🎮 Uso
+##  Uso
 
 1. **Ejecutar la aplicación:**
 ```bash
@@ -87,7 +91,7 @@ streamlit run app.py
    - Ajustar parámetros de detección
    - Hacer clic en "Procesar Video"
 
-## 💡 Ejemplos de Uso
+##  Ejemplos de Uso
 
 ### Modo Monitoreo
 - *"Vigila si hay algún accidente automovilístico"*
@@ -101,7 +105,7 @@ streamlit run app.py
 - *"Localiza camiones estacionados"*
 - *"Identifica perros grandes"*
 
-## 🏗️ Arquitectura del Sistema
+##  Arquitectura del Sistema
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -115,7 +119,7 @@ streamlit run app.py
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-## 📁 Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```
 ├── app.py                 # Aplicación principal
@@ -133,7 +137,7 @@ streamlit run app.py
 └── output_captures/      # Capturas de pantalla
 ```
 
-## ⚙️ Configuración Avanzada
+##  Configuración Avanzada
 
 ### Parámetros de Detección
 - **Confianza:** Umbral mínimo para considerar una detección válida (0.1-1.0)
@@ -145,14 +149,14 @@ streamlit run app.py
 - **Incendios:** `['fire', 'smoke']`
 - **General:** `['person', 'bicycle', 'car', 'motorcycle', 'bus', 'train', 'truck', 'cat', 'dog']`
 
-## 🔒 Consideraciones de Seguridad
+##  Consideraciones de Seguridad
 
 - Mantener la clave API de Gemini segura
 - No subir archivos `.env` al control de versiones
 - Revisar permisos de archivos generados
 - Validar entrada de videos antes del procesamiento
 
-## 🐛 Resolución de Problemas
+##  Resolución de Problemas
 
 ### Errores Comunes
 
@@ -168,7 +172,7 @@ streamlit run app.py
    - Comprobar formato de video compatible
    - Verificar que el archivo no esté corrupto
 
-## 🤝 Contribuciones
+##  Contribuciones
 
 Las contribuciones son bienvenidas. Para contribuir:
 
@@ -178,7 +182,7 @@ Las contribuciones son bienvenidas. Para contribuir:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abrir un Pull Request
 
-## 📊 Casos de Uso
+##  Casos de Uso
 
 - **Seguridad Industrial:** Monitoreo de accidentes en plantas
 - **Seguridad Vial:** Análisis de tráfico y accidentes
@@ -186,15 +190,15 @@ Las contribuciones son bienvenidas. Para contribuir:
 - **Investigación:** Análisis forense de videos
 - **Smart Cities:** Monitoreo urbano inteligente
 
-## 🎓 Créditos
+##  Créditos
 
 Desarrollado como parte del Hackathon UNAL 2025 por el Equipo 4.
 
-## 📄 Licencia
+##  Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
-## 📞 Soporte
+##  Soporte
 
 Para soporte y preguntas:
 - Crear un Issue en el repositorio
@@ -202,4 +206,4 @@ Para soporte y preguntas:
 
 ---
 
-**⚡ Powered by AI | Built with ❤️ for Smart Security**
+**  Powered by AI | Built with  for Smart Security**
